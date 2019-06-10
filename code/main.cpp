@@ -201,6 +201,16 @@ internal bool PatchWHGame(char *filepath, bool removePatch)
     return false;
   }
   
+  // 6) Unmap memory-mapped file
+  if (!UnmapViewOfFile(filebase)) {
+    printf("Warning: Could not unmap a memory-mapped file of \"%s\"\n", filepath);
+  }
+  
+  // 7) Close file handle
+  if (!CloseHandle(whgame)) {
+    printf("Warning: Could not close \"%s\" file\n", filepath);
+  }
+  
   return true;
 }
 
