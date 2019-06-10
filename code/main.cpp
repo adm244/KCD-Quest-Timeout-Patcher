@@ -144,10 +144,10 @@ internal bool PatchWHGame(char *filepath, bool removePatch)
   
   // 4.1) Get IsObjectiveTimedOut address
   uint64 IsObjectiveTimedOutAddr = FindSignature((uint64)filebase, filesize.QuadPart,
-    "\x5B\xC3\xA8\x04\x75\xF4\xA8\x08\x74\x16",
-    "xxxxxxxxxx", -0x15);
+    "\xE8\x00\x00\x00\x00\x48\x8B\x50\x08\x48\x89\x53\x18\xEB\x00\xE8\x00\x00\x00\x00\x48\x8B\x48\x18\x48\x89\x4B\x18",
+    "x????xxxxxxxxx?x????xxxxxxxx", -0x13);
   if (!IsObjectiveTimedOutAddr) {
-    printf("Cannot find address of \"IsObjectiveTimedOut\" in \"%s\"\n", filepath);
+    printf("Cannot find address of \"ObjectiveTimer::IsTimedOut\" in \"%s\"\n", filepath);
     return false;
   }
   

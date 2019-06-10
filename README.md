@@ -40,3 +40,5 @@ List of versions that were tested is located below.
 
 ### Tested versions
 * 1.8.2
+* 1.9.0
+* 1.9.1 (CC)
