@@ -169,7 +169,7 @@ internal bool PatchWHGame(char *filepath, bool removePatch)
   uint64 _funcsig = (removePatch) ? _funcsig_patched : _funcsig_unpatched;
   uint64 _funcsig_actual = (*((uint64 *)IsObjectiveTimedOutAddr) & 0xFFFFFFFFFFFF);
   if (_funcsig != _funcsig_actual) {
-    printf("Function signatures doesn't match:\n\tExpected: 0x%llX\n\tGot: 0x%llX\n\tAt: 0x%llX\n", _funcsig, _funcsig_actual, IsObjectiveTimedOutAddr);
+    printf("Function signatures doesn't match:\n\tExpected: 0x%llX\n\tGot: 0x%llX\n\tAt: 0x%llX\n", _funcsig, _funcsig_actual, IsObjectiveTimedOutAddr - (uint64)filebase);
     return false;
   }
   
@@ -191,7 +191,7 @@ internal bool PatchWHGame(char *filepath, bool removePatch)
   _funcsig = (removePatch) ? _funcsig_unpatched : _funcsig_patched;
   uint64 _funcsig_patched_actual = (*((uint64 *)IsObjectiveTimedOutAddr) & 0xFFFFFFFFFFFF);
   if (_funcsig != _funcsig_patched_actual) {
-    printf("Function signatures after patch doesn't match:\n\tExpected: 0x%llX\n\tGot: 0x%llX\n\tAt: 0x%llX\n", _funcsig_patched, _funcsig_patched_actual, IsObjectiveTimedOutAddr);
+    printf("Function signatures after patch doesn't match:\n\tExpected: 0x%llX\n\tGot: 0x%llX\n\tAt: 0x%llX\n", _funcsig_patched, _funcsig_patched_actual, IsObjectiveTimedOutAddr - (uint64)filebase);
     return false;
   }
   
